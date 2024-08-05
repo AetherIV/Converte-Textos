@@ -1,0 +1,266 @@
+/* Geral HTML */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #0c0000;
+  height: 100%;
+  width: 100%;
+  color: white;
+  overflow-x: hidden;
+  min-width: 320px;
+  overflow: hidden;
+}
+
+/* Elementos HTML */
+
+header {
+  position: static;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  z-index: 1000;
+  animation: slideIn 2s;
+}
+
+label{
+  margin-right: 30px;
+}
+
+pre {
+  display: inline-block;
+  margin-left: 10vh;
+  font-size: 15px;
+  margin-bottom: 10vh;
+  cursor: pointer;
+}
+
+button {
+  font-size: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Elementos por ID */
+
+/* | Textos | */
+
+#textInputContainer {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px;
+  z-index: 1000;
+  margin: 10px;
+  width: auto;
+  min-width: 30%;
+  animation: slideIn 3s;
+}
+
+#textInput {
+  width: auto;
+  min-width: 50%;
+  min-height: 10%;
+  max-width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  border-radius: 10px;
+  margin-bottom: 3vh;
+  font-size: 13px;
+  border: 3px solid black;
+  background-color: #2b2b2b;
+  color: white;
+}
+
+#textOutputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+#textOutput {
+  width: 50%;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px red;
+  border: 4px solid #000000;
+  border-radius: 10px;
+  background-color: #0c0000;
+  opacity: 0;
+}
+
+/* | Divs | */
+
+#conversions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #333;
+  width: auto;
+  height: 50%;
+  padding: 10px;
+}
+
+#buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #000000;
+  border-radius: 15px;
+}
+
+/* Elementos por Classe */
+
+/* | Botões | */
+
+.buttons {
+  margin: 10px;
+  border-radius: 15px;
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #000000;
+}
+
+.buttons:hover {
+  background-color: #4b4a4a;
+  transform: scale(110%);
+}
+
+/* | Textarea | */
+
+.textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+/* | Switches | */
+
+.switch {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 24px;
+  margin-bottom: 10px;
+  animation: slideIn 1s;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000;
+  transition: 0.3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #f10909;
+}
+
+input:focus + .slider {
+  animation: glow 1.5s;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  transform: translateX(25px);
+  border-radius: 100%;
+  width: 18px;
+  height: 18px;
+}
+
+/* Elementos DOM */
+
+#endSpaceDiv {
+  display: flex;
+  margin-left: 20px;
+}
+
+#copyBtn{
+  display: inline;
+  padding: 10px;
+}
+
+/* Animações */
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 30px red;
+  }
+  100% {
+    box-shadow: 0 0 0 red;
+  }
+}
+
+@keyframes slideIn{
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.buttons:active{
+  transform: scale(90%);
+  box-shadow: 0 0 30px rgb(129, 10, 10);
+}
+
+.textarea:focus{
+  transform: scale(101%);
+  box-shadow: inset 0 0 10px rgb(236, 213, 213);
+}
+
+.switch:hover{
+  transform: scale(115%);
+}
+
+/* Responsividade */

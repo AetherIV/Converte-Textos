@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor de Textos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Conversor de Textos</h1>
+    </header>
+    <div id="textInputContainer">
+      <span id="textInput"role="textbox"class="textarea"contenteditable></span>
+    </div>
+
+    <div id="conversions">
+      <label class="switch" id="upperSwitch">
+        <input type="checkbox" id="upper" />
+        <span class="slider" id="upperSlider"></span>
+        <pre>Converter Para Maiúsculo</pre>
+      </label>
+
+      <label class="switch" id="lowerSwitch">
+        <input type="checkbox" id="lower" />
+        <span class="slider" id="lowerSlider"></span>
+        <pre>Converter Para Minúsculo</pre>
+      </label>
+
+      <label class="switch" id="symbolsSwitch">
+        <input type="checkbox" id="symbols" />
+        <span class="slider" id="symbolsSlider"></span>
+        <pre>Remover Símbolos</pre>
+      </label>
+
+      <label class="switch" id="spacesSwitch">
+        <input type="checkbox" id="spaces" />
+        <span class="slider" id="spacesSlider"></span>
+        <pre>Remover Espaços</pre>
+      </label>
+
+      <label class="switch" id="lineBreaksSwitch">
+        <input type="checkbox" id="lineBreaks" />
+        <span class="slider" id="lineBreaksSlider"></span>
+        <pre>Remover Quebra de Linha</pre>
+      </label>
+
+      <label class="switch" id="cnpjSwitch">
+        <input type="checkbox" id="cnpj" />
+        <span class="slider" id="cnpjSlider"></span>
+        <pre>Converter CNPJ</pre>
+      </label>
+
+      <label class="switch" id="cpfSwitch">
+        <input type="checkbox" id="cpf" />
+        <span class="slider" id="cpfSlider"></span>
+        <pre>Converter CPF</pre>
+      </label>
+    </div>
+
+    <div id="textOutputContainer">
+      <span id="textOutput" readonly></span>
+    </div>
+
+    <div id="buttonContainer">
+      <button id="convertBtn" class="buttons">Converter</button>
+      <button id="clearBtn" class="buttons">Limpar</button>
+    </div>
+
+    <footer>
+      <p>Desenvolvido por Rafael Romera <br> Versão: 1.0 (Open-Beta)</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
