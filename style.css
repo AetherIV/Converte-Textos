@@ -49,6 +49,14 @@ button {
   cursor: pointer;
 }
 
+pre {
+  display: inline-block;
+  margin-left: 10vh;
+  font-size: 15px;
+  margin-bottom: 10vh;
+  cursor: pointer;
+}
+
 footer {
   text-align: center;
   padding: calc(10px + 1vw);
