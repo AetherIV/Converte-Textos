@@ -18,6 +18,53 @@ document.addEventListener("DOMContentLoaded", () => {
   //Divs
   let textOutputContainer = document.getElementById("textOutputContainer");
 
+// INICIO CÓDIGOS PARA VALIDAÇÃO LÓGICA
+
+  uppercaseCheckbox.addEventListener('change', function(){ //Event listener para desativar Minúsculos (lógica)
+    if(this.checked){
+        lowercaseCheckbox.checked = false;
+        disableCPFandCNPJ();
+    }
+  });
+
+  lowercaseCheckbox.addEventListener('change', function(){ //Event listener para desativar Maiúsculos (lógica)
+    if(this.checked){
+        uppercaseCheckbox.checked = false;
+        disableCPFandCNPJ();
+    }
+  });
+
+  cnpjCheckbox.addEventListener('change', function(){ //Event listener para desativar CPF (lógica)
+    if(this.checked){
+        cpfCheckbox.checked = false;
+        disableAllOthers();
+    }
+  });
+
+  cpfCheckbox.addEventListener('change' , function(){ //Event Listener para desativar CNPJ (lógica)
+    if(this.checked){
+        cnpjCheckbox.checked = false;
+        disableAllOthers();
+    }
+  });
+
+  function disableCPFandCNPJ(){ //Função para desabilitar checkbox CPF e CNPJ
+    if(cnpjCheckbox.checked || cpfCheckbox.checked){
+        cnpjCheckbox.checked = false;
+        cpfCheckbox.checked = false;
+    }
+  }
+
+  function disableAllOthers(){ //Função para desabilitar todas as checkboxes menos CPF ou CNPJ
+    uppercaseCheckbox.checked = false;
+    lowercaseCheckbox.checked = false;
+    symbolCheckbox.checked = false;
+    spaceCheckbox.checked = false;
+    lineBreakCheckbox.checked = false;
+  }
+
+// FIM CÓDIGOS PARA VALIDAÇÃO LÓGICA
+
   function convertText() {
     //Função Principal para converter textos
 
@@ -34,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         conversionString = conversionString.toLowerCase();
       }
       if (symbolCheckbox.checked) {
-        conversionString = conversionString.replace(/[^\p{L}\p{N}\s]/gu, " "); //Evita a remoção de letras com acentos de todas as linguas
+        conversionString = conversionString.replace(/[^\p{L}\p{N}\s]/gu, ""); //Evita a remoção de letras com acentos de todas as linguas
       }
       if (spaceCheckbox.checked) {
         if (endSpaceInput.checked) {
@@ -52,11 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (conversionString.length === 14) { //Somente se a string for 14 caracteres que a conversão vai ser feita
             conversionString = conversionString.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
         }
+        else if(conversionString.length >= 14){
+            conversionString = conversionString.replace(/\s+/g, "")
+            conversionString = conversionString.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
+        }
     }
     if (cpfCheckbox.checked) {
-        conversionString = conversionString.substring(0, 11);//Limita a string para somente 11 caracteres, evitando erros de mais números aparecer na conversão
-        if (conversionString.length === 11) { //Somente se a string for 11 caracteres que a conversão vai ser feita
-            conversionString = conversionString.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
+        conversionString = conversionString.replace(/\s+/g, "")
+        if (conversionString.length === 13) { //Somente se a string for 11 caracteres que a conversão vai ser feita
+            conversionString = conversionString.substring(0, 13);//Limita a string para somente 11 caracteres, evitando erros de mais números aparecer na conversão
+            conversionString = conversionString.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
         }
     }
 

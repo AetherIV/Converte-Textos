@@ -12,52 +12,72 @@
       <h1>Conversor de Textos</h1>
     </header>
     <div id="textInputContainer">
-      <span id="textInput"role="textbox"class="textarea"contenteditable></span>
+      <span
+        id="textInput"
+        role="textbox"
+        class="textarea"
+        contenteditable></span>
     </div>
 
-    <div id="conversions">
-      <label class="switch" id="upperSwitch">
-        <input type="checkbox" id="upper" />
-        <span class="slider" id="upperSlider"></span>
-        <pre>Converter Para Maiúsculo</pre>
-      </label>
+    <div id="notificationDiv"></div> <!--Temporário para geração das mensagens de erro, vazio e sem uso por enquanto-->
 
-      <label class="switch" id="lowerSwitch">
-        <input type="checkbox" id="lower" />
-        <span class="slider" id="lowerSlider"></span>
-        <pre>Converter Para Minúsculo</pre>
-      </label>
+    <form id="conversions">
+      <label for="upper" class="textLabel">Converter para maiúsculos</label>
+      <div class="switches">
+        <label class="switch" id="upperSwitch">
+          <input type="checkbox" id="upper" />
+          <span class="slider" id="upperSlider"></span>
+        </label>
+      </div>
 
-      <label class="switch" id="symbolsSwitch">
-        <input type="checkbox" id="symbols" />
-        <span class="slider" id="symbolsSlider"></span>
-        <pre>Remover Símbolos</pre>
-      </label>
+      <label for="lower" class="textLabel">Converter para Minúsculos</label>
+      <div class="switches">
+        <label class="switch" id="lowerSwitch">
+          <input type="checkbox" id="lower" />
+          <span class="slider" id="lowerSlider"></span>
+        </label>
+      </div>
 
-      <label class="switch" id="spacesSwitch">
-        <input type="checkbox" id="spaces" />
-        <span class="slider" id="spacesSlider"></span>
-        <pre>Remover Espaços</pre>
-      </label>
+      <label for="symbols" class="textLabel">Remover Símbolos</label>
+      <div class="switches">
+        <label class="switch" id="symbolsSwitch">
+          <input type="checkbox" id="symbols" />
+          <span class="slider" id="symbolsSlider"></span>
+        </label>
+      </div>
 
-      <label class="switch" id="lineBreaksSwitch">
-        <input type="checkbox" id="lineBreaks" />
-        <span class="slider" id="lineBreaksSlider"></span>
-        <pre>Remover Quebra de Linha</pre>
-      </label>
+      <label for="spacesSwitch" class="textLabel">Remover Espaços</label>
+      <div class="switches">
+        <label class="switch" id="spacesSwitch">
+          <input type="checkbox" id="spaces" />
+          <span class="slider" id="spacesSlider"></span>
+        </label>
+      </div>
 
-      <label class="switch" id="cnpjSwitch">
-        <input type="checkbox" id="cnpj" />
-        <span class="slider" id="cnpjSlider"></span>
-        <pre>Converter CNPJ</pre>
-      </label>
+      <label for="lineBreaks" class="textLabel">Remover Quebra de Linha</label>
+      <div class="switches">
+        <label class="switch" id="lineBreaksSwitch">
+          <input type="checkbox" id="lineBreaks" />
+          <span class="slider" id="lineBreaksSlider"></span>
+        </label>
+      </div>
 
-      <label class="switch" id="cpfSwitch">
-        <input type="checkbox" id="cpf" />
-        <span class="slider" id="cpfSlider"></span>
-        <pre>Converter CPF</pre>
-      </label>
-    </div>
+      <label for="cnpj" class="textLabel">Converter CNPJ</label>
+      <div class="switches">
+        <label class="switch" id="cnpjSwitch">
+          <input type="checkbox" id="cnpj" />
+          <span class="slider" id="cnpjSlider"></span>
+        </label>
+      </div>
+
+      <label for="cpf" class="textLabel">Converter CPF</label>
+      <div class="switches">
+        <label class="switch" id="cpfSwitch">
+          <input type="checkbox" id="cpf" />
+          <span class="slider" id="cpfSlider"></span>
+        </label>
+      </div>
+    </form>
 
     <div id="textOutputContainer">
       <span id="textOutput" readonly></span>
@@ -69,7 +89,10 @@
     </div>
 
     <footer>
-      <p>Desenvolvido por Rafael Romera <br> Versão: 1.1 (Open-Beta)</p>
+      <p>
+        Desenvolvido por Rafael Romera <br />
+        Versão: 1.2 (Open-Beta)
+      </p>
     </footer>
 
     <script src="script.js"></script>
