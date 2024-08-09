@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let copyBtn = document.getElementById("copyBtn");
 
   //Divs
-  let textOutputContainer = document.getElementById("textOutputContainer");
+  let notificationDiv = document.getElementById("notificationDiv");
+  let buttonContainer = document.getElementById('buttonContainer');
 
 // INICIO CÓDIGOS PARA VALIDAÇÃO LÓGICA
 
@@ -121,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
           createCopy();
         } else {
           copyBtn.style.display = "inline-block";
+          copyIcon.style.display = "inline-block";
         }
       }
     }
@@ -195,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
         convertError.id = 'convertError';
         convertError.textContent = "Favor digitar algo";
         convertError.classList = 'slideIn';
-        document.body.appendChild(convertError);
+        notificationDiv.appendChild(convertError);
         
         setTimeout(() => { //Primeiro timeout para questão de frontend, ele roda a animação antes do child ser removido do body
             convertError.classList.remove('slideIn')
@@ -203,8 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 4000);
 
         setTimeout(() => { //Segundo timeout para excluir completamente a child
-            document.body.removeChild(convertError);
-        }, 5000);
+            notificationDiv.removeChild(convertError);
+        }, 4700);
     }
   }
 
@@ -216,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         copyMsg.id = "copyMsg";
         copyMsg.textContent = 'Texto copiado com sucesso!'
         copyMsg.classList = 'slideIn';
-        document.body.appendChild(copyMsg);
+        notificationDiv.appendChild(copyMsg);
 
         setTimeout(() => {
             copyMsg.classList.remove('slideIn');
@@ -224,8 +226,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 4000);
 
         setTimeout(() => {
-            document.body.removeChild(copyMsg);
-        }, 5000);
+            notificationDiv.removeChild(copyMsg);
+        }, 4700);
     }
   }
 
@@ -238,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         noConversion.textContent = "Favor selecionar pelo menos um tipo de conversão";
         noConversion.classList = 'slideIn';
 
-        document.body.appendChild(noConversion);
+        notificationDiv.appendChild(noConversion);
 
         setTimeout(() => {
             noConversion.classList.remove('slideIn');
@@ -246,8 +248,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 4000);
 
         setTimeout(() => {
-            document.body.removeChild(noConversion);
-        }, 5000);
+          notificationDiv.removeChild(noConversion);
+        }, 4700);
     }
   }
 
@@ -257,19 +259,27 @@ document.addEventListener("DOMContentLoaded", () => {
     textOutput.style.opacity = 0;
     if (copyBtn) //Caso usuário não tiver convertido nenhum texto
       copyBtn.style.display = "none";
+      copyIcon.style.display = "none";
   }
 
   function createCopy() {
     // Cria um botão de copiar texto dinâmicamente (viadagem eu sei mas queria mexer com elementos DOM)
 
     copyBtn = document.createElement("button");
+    copyIcon = document.createElement("i");
+
+    copyIcon.className = "bi bi-copy"; //Cria junto um ícone
+    copyIcon.style.margin = "5px";
 
     copyBtn.textContent = "Copiar";
     copyBtn.className = "buttons";
     copyBtn.id = "copyBtn";
+    copyBtn.className = "buttons"
 
     copyBtn.addEventListener("click", copyText);
-    textOutputContainer.appendChild(copyBtn);
+
+    buttonContainer.appendChild(copyBtn);
+    copyBtn.appendChild(copyIcon)
   }
 
   function copyText() {

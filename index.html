@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversor de Textos</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
 
   <body>
@@ -19,7 +20,7 @@
         contenteditable></span>
     </div>
 
-    <div id="notificationDiv"></div> <!--Temporário para geração das mensagens de erro, vazio e sem uso por enquanto-->
+    <div id="notificationDiv"></div>
 
     <form id="conversions">
       <label for="upper" class="textLabel">Converter para maiúsculos</label>
@@ -84,15 +85,15 @@
     </div>
 
     <div id="buttonContainer">
-      <button id="convertBtn" class="buttons">Converter</button>
-      <button id="clearBtn" class="buttons">Limpar</button>
+      <button id="convertBtn" class="buttons"><i class="bi bi-repeat" style="margin-right: 10px;"></i>Converter</button>
+      <button id="clearBtn" class="buttons"><i class="bi bi-trash" style="margin-right: 10px;"></i>Limpar</button>
     </div>
 
     <footer>
-      <p>
-        Desenvolvido por Rafael Romera <br />
-        Versão: 1.2 (Open-Beta)
-      </p>
+      <h4>
+        Desenvolvido por Rafael Romera <br>
+        Versão: 0.3 (Open-Beta)
+      </h4>
     </footer>
 
     <script src="script.js"></script>
