@@ -17,7 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //Divs
   let notificationDiv = document.getElementById("notificationDiv");
-  let buttonContainer = document.getElementById('buttonContainer');
+  let buttonContainer = document.getElementById("buttonContainer");
+  let spaceBox = document.getElementById("spaceBox");
+  let textOutputContainer = document.getElementById("textOutputContainer");
 
 // INICIO CÓDIGOS PARA VALIDAÇÃO LÓGICA
 
@@ -113,9 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-      if (!textInput.innerText.trim()) {
+      if (!textInput.innerHTML.trim()) {
         convertErrorTooltip();
       } else {
+        textOutputContainer.style.display="block";
         textOutput.style.opacity = 1;
         textOutput.innerHTML = conversionString;
         if (!copyBtn) { //Validação para não criar mais de 1 botão de copiar
@@ -130,13 +133,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   spaceCheckbox.addEventListener("change", () => {  //Ao habilitar a opção de remover espaços, cria dinâmicamente essa input (eu passei muito tempo nisso)
   
-
-    let spacesSwitch = document.getElementById("spacesSwitch"); //Pega a label de espaços
     let endSpaceDiv = document.getElementById("endSpaceDiv"); //Cria div dentro da label de espaços
     let endSpaceLabel = document.getElementById("endSpaceLabel"); //Cria a label e espaços somente no final
     let endSpaceInput = document.getElementById("endSpaceInput"); //Cria Input para o checkbox
-    let endSpaceSpan = document.getElementById("endSpaceSpan"); //Para utilizar o Slider
-    let endSpacePre = document.getElementById("endSpacePre"); //Texto
 
     /* 
         Lógica:
@@ -148,41 +147,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (spaceCheckbox.checked) {
       if (!endSpaceInput) {
-        endSpaceDiv = document.createElement("div");
-        endSpaceDiv.id = "endSpaceDiv";
 
         endSpaceLabel = document.createElement("label");
         endSpaceLabel.id = "endSpaceLabel";
         endSpaceLabel.className = "switch";
+        endSpaceLabel.textContent = "Somente final";
 
         endSpaceInput = document.createElement("input");
         endSpaceInput.id = "endSpaceInput";
         endSpaceInput.type = "checkbox";
 
-        endSpaceSpan = document.createElement("span");
-        endSpaceSpan.className = "slider";
-        endSpaceSpan.id = "endSpaceSpan";
-
-        endSpacePre = document.createElement("pre");
-        endSpacePre.id = "endSpacePre";
-        endSpacePre.textContent = "Somente Final";
-
-        spacesSwitch.appendChild(endSpaceDiv);
-        endSpaceDiv.appendChild(endSpaceLabel);
+        spaceBox.appendChild(endSpaceLabel);
         endSpaceLabel.appendChild(endSpaceInput);
-        endSpaceLabel.appendChild(endSpaceSpan);
-        endSpaceLabel.appendChild(endSpacePre);
 
-        //Achei melhor entrar dentro da label de espaços pois fica um pouco mais bonito e mais fácil de incluir os switches
       }
     } else {
       if (endSpaceLabel) {
-        //Remove todos os elementos criados da label
-        spacesSwitch.removeChild(endSpaceDiv);
-        endSpaceDiv.removeChild(endSpaceLabel);
+        spaceBox.removeChild(endSpaceLabel);
         endSpaceLabel.removeChild(endSpaceInput);
-        endSpaceLabel.removeChild(endSpaceSpan);
-        endSpaceLabel.removeChild(endSpacePre);
       }
     }
   });
@@ -267,19 +249,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     copyBtn = document.createElement("button");
     copyIcon = document.createElement("i");
+    copyLabel = document.createElement("label")
 
     copyIcon.className = "bi bi-copy"; //Cria junto um ícone
     copyIcon.style.margin = "5px";
+    copyIcon.style.fontSize = "13px";
 
-    copyBtn.textContent = "Copiar";
     copyBtn.className = "buttons";
     copyBtn.id = "copyBtn";
     copyBtn.className = "buttons"
 
+    copyLabel.textContent = "Copiar";
+
     copyBtn.addEventListener("click", copyText);
 
     buttonContainer.appendChild(copyBtn);
-    copyBtn.appendChild(copyIcon)
+    copyBtn.appendChild(copyIcon);
+    copyBtn.appendChild(copyLabel);
   }
 
   function copyText() {
@@ -289,4 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   convertBtn.addEventListener("click", convertText);
   clearBtn.addEventListener("click", clearFields);
+
+
+
 });
