@@ -47,6 +47,7 @@ header {
   text-align: center;
   z-index: 1000;
   animation: slideIn 1s;
+  user-select: none;
 }
 
 textarea{
@@ -70,6 +71,7 @@ footer {
   width: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
   margin: 10px;
+  user-select: none;
 }
 
 /* Elementos por ID */
@@ -124,6 +126,16 @@ footer {
   color: var(--text-color);
   height: fit-content;
   overflow: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+#charCounter{
+  position:static;
+  margin-left: 5px;
+  color: var(--text-color);
+  z-index: 1000;
+  user-select: none;
 }
 
 #textInput:empty::before{
@@ -171,6 +183,7 @@ footer {
   min-width: 500px;
   padding: 10px;
   border-radius: 15px;
+  user-select: none;
 }
 
 #spaceBox{
@@ -275,6 +288,17 @@ footer {
 }
 
 #endSpaceLabel{
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  min-width: fit-content;
+  transform: translateY(-150%);
+  max-width: 100px;
+  margin-left: 350px;
+}
+
+#accentLabel{
+  position: absolute;
   display: flex;
   justify-content:flex-end;
   align-items: center;

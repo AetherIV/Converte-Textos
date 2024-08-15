@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //Elementos de texto
   const textInput = document.getElementById("textInput");
   const textOutput = document.getElementById("textOutput");
+  const charCounter = document.getElementById("charCounter")
 
   //Elementos de conversão
   const uppercaseCheckbox = document.getElementById("upper");
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let buttonContainer = document.getElementById("buttonContainer");
   let spaceBox = document.getElementById("spaceBox");
   let textOutputContainer = document.getElementById("textOutputContainer");
+  let symbolBox = document.getElementById("symbolBox");
 
 // INICIO CÓDIGOS PARA VALIDAÇÃO LÓGICA
 
@@ -84,7 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
         conversionString = conversionString.toLowerCase();
       }
       if (symbolCheckbox.checked) {
-        conversionString = conversionString.replace(/[^\p{L}\p{N}\s]/gu, ""); //Evita a remoção de letras com acentos de todas as linguas
+        if(accentCheckbox.checked){ 
+          conversionString = conversionString
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^\p{L}\p{N}\s]/gu, "");
+        }
+        else{
+          conversionString = conversionString.replace(/[^\p{L}\p{N}\s]/gu, ""); //Evita a remoção de letras com acentos de todas as linguas
+        }
       }
       if (spaceCheckbox.checked) {
         if (endSpaceInput.checked) {
@@ -131,9 +141,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  symbolCheckbox.addEventListener("change", () => {
+    let accentLabel = document.getElementById("accentLabel"); //Cria a label para remover acentos
+    let accentCheckbox = document.getElementById("accentCheckbox"); //Cria a checkbox
+
+    if (symbolCheckbox.checked) {
+      if (!accentCheckbox) {
+
+        accentLabel = document.createElement("label");
+        accentLabel.id = "accentLabel";
+        accentLabel.textContent = "Remover Acentos";
+
+        accentCheckbox = document.createElement("input");
+        accentCheckbox.id = "accentCheckbox";
+        accentCheckbox.type = "checkbox";
+
+        symbolBox.appendChild(accentLabel);
+        accentLabel.appendChild(accentCheckbox);
+
+      }
+    } else {
+      if (accentLabel) {
+        symbolBox.removeChild(accentLabel);
+        accentLabel.removeChild(accentCheckbox);
+      }
+    }
+  });
+
   spaceCheckbox.addEventListener("change", () => {  //Ao habilitar a opção de remover espaços, cria dinâmicamente essa input (eu passei muito tempo nisso)
   
-    let endSpaceDiv = document.getElementById("endSpaceDiv"); //Cria div dentro da label de espaços
     let endSpaceLabel = document.getElementById("endSpaceLabel"); //Cria a label e espaços somente no final
     let endSpaceInput = document.getElementById("endSpaceInput"); //Cria Input para o checkbox
 
@@ -168,6 +204,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
+  textInput.addEventListener('input', () => { //Event listener para contar caracteres - Sugestão Eduardo
+    const textLength = textInput.textContent.length;
+    charCounter.style.display = "inline";
+    charCounter.textContent = `${textLength}`;
+    if(!textInput.innerHTML.trim()){charCounter.style.display = "none"};
+  })
 
   function convertErrorTooltip() { //Criar mensagem de erro caso o usuário tente converter sem nada na caixa de texto (WIP)
 
@@ -239,6 +282,8 @@ document.addEventListener("DOMContentLoaded", () => {
     textInput.innerHTML = "";
     textOutput.innerHTML = "";
     textOutput.style.opacity = 0;
+    charCounter.textContent = "";
+    charCounter.style.display = "none";
     if (copyBtn) //Caso usuário não tiver convertido nenhum texto
       copyBtn.style.display = "none";
       copyIcon.style.display = "none";
