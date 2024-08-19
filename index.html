@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor de Textos</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="darkMode.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Conversor de Textos</h1>
+      <button id="modeSwitch">
+        <i class="bi bi-moon"></i>
+        <i class="bi bi-brightness-high"></i>
+      </button>
+    </header>
+
+    <div id="textInputContainer">
+      
+      <span id="textInput" class="textarea" contenteditable></span>
+      <p id="charCounter"></p>
+      
+    </div>
+
+    <div id="notificationDiv"></div>
+
+    <form id="conversions">
+
+      <div class="conversionBox" id="upperBox">
+        <input type="checkbox" id="upper" class="conversion">
+        <label for="upper" class="textLabel">Converter para maiúsculos</label>
+      </div>
+
+      <div class="conversionBox" id="lowerBox">
+        <input type="checkbox" id="lower" class="conversion">
+        <label for="lower" class="textLabel">Converter para Minúsculos</label>
+      </div>
+
+      <div class="conversionBox" id="symbolBox">
+        <input type="checkbox" id="symbols" class="conversion">
+        <label for="symbols" class="textLabel">Remover Símbolos</label>
+      </div>
+
+      <div class="conversionBox" id="spaceBox">
+        <input type="checkbox" id="spaces" class="conversion">
+        <label for="spaces" class="textLabel">Remover Espaços</label>
+      </div>
+      
+      <div class="conversionBox" id="lineBox">
+        <input type="checkbox" id="lineBreaks" class="conversion">
+        <label for="lineBreaks" class="textLabel">Remover Quebra de Linha</label>
+      </div>
+
+      
+      <div class="conversionBox" id="cnpjBox">
+        <input type="checkbox" id="cnpj" class="conversion">
+        <label for="cnpj" class="textLabel">Converter CNPJ</label>
+      </div>
+
+      
+      <div class="conversionBox" id="cpfBox">
+        <input type="checkbox" id="cpf" class="conversion">
+        <label for="cpf" class="textLabel">Converter CPF</label>
+      </div>
+
+    </form>
+
+    <div id="textOutputContainer">
+      <span id="textOutput" role="textbox" class="textarea"></span>
+    </div>
+
+    <div id="buttonContainer">
+      <button id="convertBtn" class="buttons"><i class="bi bi-repeat"></i><label for="convertBtn">Converter</label></button>
+      <button id="clearBtn" class="buttons"><i class="bi bi-trash"></i><label for="clearBtn">Limpar</label></button>
+    </div>
+
+    <footer>
+      <h4>
+        Desenvolvido por Rafael Romera <br>
+        Versão: 1.2
+      </h4>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
