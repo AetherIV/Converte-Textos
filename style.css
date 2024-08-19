@@ -74,6 +74,10 @@ footer {
   user-select: none;
 }
 
+label{
+  cursor: pointer;
+}
+
 /* Elementos por ID */
 
 #modeSwitch{
@@ -239,6 +243,7 @@ footer {
   margin-bottom: 10px;
   white-space: pre-wrap;
   overflow-wrap: break-word;
+  padding: 10px;
 }
 
 /* Labels */
@@ -250,6 +255,7 @@ footer {
   min-width: 200px;
   min-height: 30px;
   margin: 4px;
+  padding: 10px;
 }
 
 /* Elementos DOM */
