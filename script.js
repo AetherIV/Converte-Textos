@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       !uppercaseCheckbox.checked && !lowercaseCheckbox.checked && !symbolCheckbox.checked && !spaceCheckbox.checked && !lineBreakCheckbox.checked && !cnpjCheckbox.checked && !cpfCheckbox.checked) {
       noConversionTooltip();
     } else {
-      let conversionString = textInput.innerHTML;
+      let conversionString = textInput.innerText;
 
       if (uppercaseCheckbox.checked) {
         conversionString = conversionString.toUpperCase();
@@ -126,12 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-      if (!textInput.innerHTML.trim()) {
+      if (!textInput.innerText.trim()) {
         convertErrorTooltip();
       } else {
         textOutputContainer.style.display="block";
         textOutput.style.opacity = 1;
-        textOutput.innerHTML = conversionString;
+        textOutput.innerText = conversionString;
         if (!copyBtn) { //Validação para não criar mais de 1 botão de copiar
           createCopy();
         } else {
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const textLength = textInput.textContent.length;
     charCounter.style.display = "inline";
     charCounter.textContent = `${textLength}`;
-    if(!textInput.innerHTML.trim()){charCounter.style.display = "none"};
+    if(!textInput.innerText.trim()){charCounter.style.display = "none"};
   })
 
   function convertErrorTooltip() { //Criar mensagem de erro caso o usuário tente converter sem nada na caixa de texto (WIP)
@@ -279,8 +279,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function clearFields() {
-    textInput.innerHTML = "";
-    textOutput.innerHTML = "";
+    textInput.innerText = "";
+    textOutput.innerText = "";
     textOutput.style.opacity = 0;
     charCounter.textContent = "";
     charCounter.style.display = "none";
@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function copyText() {
-    navigator.clipboard.writeText(textOutput.innerHTML);
+    navigator.clipboard.writeText(textOutput.innerText);
     createCopiedTootip();
   }
 
