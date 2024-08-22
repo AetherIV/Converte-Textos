@@ -54,6 +54,10 @@ textarea{
   resize: none;
 }
 
+hr{
+  opacity: 0;
+}
+
 button {
   font-size: 15px;
   padding: 10px;
@@ -215,6 +219,10 @@ label{
 
 .conversion{
   display: none;
+}
+
+.conversionBox{
+  margin-bottom: 20px;
 }
 
 /* | Botões | */
