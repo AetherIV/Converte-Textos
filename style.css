@@ -7,15 +7,17 @@
   --primary-color: #ebe7e7c9;
   --secondary-color: #4646c4e1;
   --error-color: #db1919;
+  --mode-color: #1948e6;
 }
 
 .darkMode{
-  --default-bg: #272626;
+  --default-bg: #1d1c1c;
   --text-color: #dfdcdc;
-  --accent-color: #5c2525;
+  --accent-color: #662222;
   --primary-color: #444242c9;
-  --secondary-color: #0f7b87e1;
+  --secondary-color: #24e412e1;
   --error-color: #db1919;
+  --mode-color: #ffff00;
 }
 
 /* Geral HTML */
@@ -34,7 +36,7 @@ body {
   color: var(--text-color);
   min-width: 320px;
   animation: fadeIn 1.3s;
-  font-size: 14px;
+  font-size: 1em;
   overflow-x: hidden;
 }
 
@@ -52,6 +54,10 @@ header {
 
 textarea{
   resize: none;
+}
+
+hr{
+  opacity: 0;
 }
 
 button {
@@ -72,6 +78,7 @@ footer {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
   margin: 10px;
   user-select: none;
+  font-size: 1.1em;
 }
 
 label{
@@ -85,17 +92,18 @@ label{
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
   padding: 0;
   border: none;
   position: absolute;
   top: 0;
   left: 0;
+  font-size: 20px;
   margin: 10px;
 }
 
 #modeSwitch i{
-  color: var(--secondary-color);
+  color: var(--mode-color);
 }
 
 #modeSwitch i:last-child{
@@ -194,6 +202,10 @@ label{
   max-height: 30px;
 }
 
+#cpfLabel{ /* Para ajustar e margem e não deixar o última ter um espaço em branco */
+  margin-bottom: -15px;
+}
+
 #buttonContainer {
   align-items: center;
   padding: 10px;
@@ -217,11 +229,16 @@ label{
   display: none;
 }
 
+.conversionBox{
+  margin-bottom: 20px;
+}
+
 /* | Botões | */
 
 .buttons {
   margin: 10px;
   border-radius: 15px;
+  font-size: 1.4em;
   background-color: var(--accent-color);
   color: #fff;
   border: none;
@@ -250,12 +267,11 @@ label{
 
 .textLabel{
   display: flex;
+  align-items: center;
   border-radius: 20px;
-  text-align: center;
-  min-width: 200px;
-  min-height: 30px;
-  margin: 4px;
   padding: 10px;
+  margin: 0;
+  font-size: 1em;
 }
 
 /* Elementos DOM */
@@ -312,6 +328,7 @@ label{
   transform: translateY(-150%);
   max-width: 100px;
   margin-left: 350px;
+  z-index: 1000;
 }
 
 #noConversion {

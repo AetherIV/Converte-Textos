@@ -47,12 +47,11 @@
         <input type="checkbox" id="spaces" class="conversion">
         <label for="spaces" class="textLabel">Remover Espaços</label>
       </div>
-      
+      <hr>
       <div class="conversionBox" id="lineBox">
         <input type="checkbox" id="lineBreaks" class="conversion">
         <label for="lineBreaks" class="textLabel">Remover Quebra de Linha</label>
       </div>
-
       
       <div class="conversionBox" id="cnpjBox">
         <input type="checkbox" id="cnpj" class="conversion">
@@ -62,7 +61,7 @@
       
       <div class="conversionBox" id="cpfBox">
         <input type="checkbox" id="cpf" class="conversion">
-        <label for="cpf" class="textLabel">Converter CPF</label>
+        <label for="cpf" class="textLabel" id="cpfLabel">Converter CPF</label>
       </div>
 
     </form>
@@ -73,13 +72,14 @@
 
     <div id="buttonContainer">
       <button id="convertBtn" class="buttons"><i class="bi bi-repeat"></i><label for="convertBtn">Converter</label></button>
+      <span id="copyBtnBox"></span>
       <button id="clearBtn" class="buttons"><i class="bi bi-trash"></i><label for="clearBtn">Limpar</label></button>
     </div>
 
     <footer>
       <h4>
         Desenvolvido por Rafael Romera <br>
-        Versão: 1.2
+        Versão: 1.2.1
       </h4>
     </footer>
 

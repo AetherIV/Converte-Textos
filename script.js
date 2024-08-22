@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let spaceBox = document.getElementById("spaceBox");
   let textOutputContainer = document.getElementById("textOutputContainer");
   let symbolBox = document.getElementById("symbolBox");
+  let copyBtnBox = document.getElementById("copyBtnBox");
 
 // INICIO CÓDIGOS PARA VALIDAÇÃO LÓGICA
 
@@ -170,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   spaceCheckbox.addEventListener("change", () => {  //Ao habilitar a opção de remover espaços, cria dinâmicamente essa input (eu passei muito tempo nisso)
   
-    let endSpaceLabel = document.getElementById("endSpaceLabel"); //Cria a label e espaços somente no final
+    let endSpaceLabel = document.getElementById("endSpaceLabel"); //Cria a label
     let endSpaceInput = document.getElementById("endSpaceInput"); //Cria Input para o checkbox
 
     /* 
@@ -186,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         endSpaceLabel = document.createElement("label");
         endSpaceLabel.id = "endSpaceLabel";
-        endSpaceLabel.className = "switch";
         endSpaceLabel.textContent = "Somente final";
 
         endSpaceInput = document.createElement("input");
@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     copyIcon.className = "bi bi-copy"; //Cria junto um ícone
     copyIcon.style.margin = "5px";
-    copyIcon.style.fontSize = "13px";
+    copyIcon.style.fontSize = "0.8em";
 
     copyBtn.className = "buttons";
     copyBtn.id = "copyBtn";
@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     copyBtn.addEventListener("click", copyText);
 
-    buttonContainer.appendChild(copyBtn);
+    copyBtnBox.appendChild(copyBtn);
     copyBtn.appendChild(copyIcon);
     copyBtn.appendChild(copyLabel);
   }
