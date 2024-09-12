@@ -11,10 +11,10 @@
 }
 
 .darkMode{
-  --default-bg: #1d1c1c;
+  --default-bg: #141414;
   --text-color: #dfdcdc;
-  --accent-color: #662222;
-  --primary-color: #444242c9;
+  --accent-color: #791a1a;
+  --primary-color: #313030c9;
   --secondary-color: #24e412e1;
   --error-color: #db1919;
   --mode-color: #ffff00;
@@ -29,7 +29,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, gg-sans;
   background: var(--default-bg);
   max-height: 100%;
   width: 100%;
@@ -38,6 +37,7 @@ body {
   animation: fadeIn 1.3s;
   font-size: 1em;
   overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Elementos HTML */
@@ -75,7 +75,6 @@ footer {
   padding: 10px;
   border-radius: 10px;
   width: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 2);
   margin: 10px;
   user-select: none;
   font-size: 1.1em;
@@ -140,6 +139,12 @@ label{
   overflow: hidden;
   white-space: pre-wrap;
   overflow-wrap: break-word;
+  border: none;
+  
+}
+
+.textInput:active{
+  outline: none;
 }
 
 #charCounter{
@@ -161,7 +166,6 @@ label{
 }
 
 #textOutput {
-  display: none;
   display: block;
   width: auto;
   min-width: 100px;
@@ -196,6 +200,9 @@ label{
   padding: 10px;
   border-radius: 15px;
   user-select: none;
+  border-width: 2px;
+  border-style: inset;
+  border-color: var(--default-bg);
 }
 
 #spaceBox{
@@ -245,7 +252,7 @@ label{
 }
 
 .buttons:hover {
-  background-color: #4b4a4a;
+  background-color: #862020;
   transform: scale(110%);
 }
 
@@ -277,24 +284,11 @@ label{
 /* Elementos DOM */
 
 #copyBtn {
-  display: inline;
   padding: 10px;
 }
 
 #copyBtn:hover{
   color: #0aee78;
-}
-
-#convertError {
-  font-size: 20px;
-  position: sticky;
-  background-color: var(--error-color);
-  color: var(--text-color);
-  padding: 5px;
-  border-radius: 5px;
-  z-index: 1000;
-  max-width: fit-content;
-  margin-bottom: 5px;
 }
 
 #copyMsg {
@@ -331,16 +325,19 @@ label{
   z-index: 1000;
 }
 
-#noConversion {
-  font-size: 20px;
-  position: sticky;
-  background-color: var(--error-color);
+#tooltip{
+  border-radius: 10px;
+  padding: 10px;
   color: var(--text-color);
-  padding: 5px;
-  border-radius: 5px;
-  z-index: 1000;
-  max-width: fit-content;
-  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.error{
+  background-color: var(--error-color);
+}
+
+.success{
+  background-color: var(--secondary-color);
 }
 
 /* Animações */
@@ -402,36 +399,6 @@ label{
   cursor: pointer;
   background-color: var(--accent-color);
   transform: scale(110%);
-}
-
-#convertBtn label{
-  display: none;
-}
-
-#convertBtn:hover label{
-  margin-left: 10px;
-  display: inline;
-  animation: fadeIn .3s;
-}
-
-#clearBtn label{
-  display: none;
-}
-
-#clearBtn:hover label{
-  margin-left: 10px;
-  display: inline;
-  animation: fadeIn .3s;
-}
-
-#copyBtn label{
-  display: none;
-}
-
-#copyBtn:hover label{
-  margin-left: 10px;
-  animation: fadeIn .3s;
-  display: inline;
 }
 
 /* Responsividade */

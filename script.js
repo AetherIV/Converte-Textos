@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //Elementos de texto
   const textInput = document.getElementById("textInput");
   const textOutput = document.getElementById("textOutput");
-  const charCounter = document.getElementById("charCounter")
+  const charCounter = document.getElementById("charCounter");
 
   //Elementos de conversão
   const uppercaseCheckbox = document.getElementById("upper");
@@ -18,50 +18,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //Divs
   let notificationDiv = document.getElementById("notificationDiv");
-  let buttonContainer = document.getElementById("buttonContainer");
   let spaceBox = document.getElementById("spaceBox");
   let textOutputContainer = document.getElementById("textOutputContainer");
   let symbolBox = document.getElementById("symbolBox");
-  let copyBtnBox = document.getElementById("copyBtnBox");
 
-// INICIO CÓDIGOS PARA VALIDAÇÃO LÓGICA
+  // INICIO CÓDIGOS PARA VALIDAÇÃO LÓGICA
 
-  uppercaseCheckbox.addEventListener('change', function(){ //Event listener para desativar Minúsculos (lógica)
-    if(this.checked){
-        lowercaseCheckbox.checked = false;
-        disableCPFandCNPJ();
+  uppercaseCheckbox.addEventListener("change", function () {
+    //Event listener para desativar Minúsculos (lógica)
+    if (this.checked) {
+      lowercaseCheckbox.checked = false;
+      disableCPFandCNPJ();
     }
   });
 
-  lowercaseCheckbox.addEventListener('change', function(){ //Event listener para desativar Maiúsculos (lógica)
-    if(this.checked){
-        uppercaseCheckbox.checked = false;
-        disableCPFandCNPJ();
+  lowercaseCheckbox.addEventListener("change", function () {
+    //Event listener para desativar Maiúsculos (lógica)
+    if (this.checked) {
+      uppercaseCheckbox.checked = false;
+      disableCPFandCNPJ();
     }
   });
 
-  cnpjCheckbox.addEventListener('change', function(){ //Event listener para desativar CPF (lógica)
-    if(this.checked){
-        cpfCheckbox.checked = false;
-        disableAllOthers();
+  cnpjCheckbox.addEventListener("change", function () {
+    //Event listener para desativar CPF (lógica)
+    if (this.checked) {
+      cpfCheckbox.checked = false;
+      disableAllOthers();
     }
   });
 
-  cpfCheckbox.addEventListener('change' , function(){ //Event Listener para desativar CNPJ (lógica)
-    if(this.checked){
-        cnpjCheckbox.checked = false;
-        disableAllOthers();
+  cpfCheckbox.addEventListener("change", function () {
+    //Event Listener para desativar CNPJ (lógica)
+    if (this.checked) {
+      cnpjCheckbox.checked = false;
+      disableAllOthers();
     }
   });
 
-  function disableCPFandCNPJ(){ //Função para desabilitar checkbox CPF e CNPJ
-    if(cnpjCheckbox.checked || cpfCheckbox.checked){
-        cnpjCheckbox.checked = false;
-        cpfCheckbox.checked = false;
+  function disableCPFandCNPJ() {
+    //Função para desabilitar checkbox CPF e CNPJ
+    if (cnpjCheckbox.checked || cpfCheckbox.checked) {
+      cnpjCheckbox.checked = false;
+      cpfCheckbox.checked = false;
     }
   }
 
-  function disableAllOthers(){ //Função para desabilitar todas as checkboxes menos CPF ou CNPJ
+  function disableAllOthers() {
+    //Função para desabilitar todas as checkboxes menos CPF ou CNPJ
     uppercaseCheckbox.checked = false;
     lowercaseCheckbox.checked = false;
     symbolCheckbox.checked = false;
@@ -69,15 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
     lineBreakCheckbox.checked = false;
   }
 
-// FIM CÓDIGOS PARA VALIDAÇÃO LÓGICA
+  // FIM CÓDIGOS PARA VALIDAÇÃO LÓGICA
 
   function convertText() {
     //Função Principal para converter textos
 
-    if (
-      !uppercaseCheckbox.checked && !lowercaseCheckbox.checked && !symbolCheckbox.checked && !spaceCheckbox.checked && !lineBreakCheckbox.checked && !cnpjCheckbox.checked && !cpfCheckbox.checked) {
-      noConversionTooltip();
-    } else {
       let conversionString = textInput.innerText;
 
       if (uppercaseCheckbox.checked) {
@@ -87,13 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
         conversionString = conversionString.toLowerCase();
       }
       if (symbolCheckbox.checked) {
-        if(accentCheckbox.checked){ 
+        if (accentCheckbox.checked) {
           conversionString = conversionString
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/[^\p{L}\p{N}\s]/gu, "");
-        }
-        else{
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^\p{L}\p{N}\s]/gu, "");
+        } else {
           conversionString = conversionString.replace(/[^\p{L}\p{N}\s]/gu, ""); //Evita a remoção de letras com acentos de todas as linguas
         }
       }
@@ -110,37 +109,46 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (cnpjCheckbox.checked) {
         conversionString = conversionString.substring(0, 14); //Limita a string para somente 14 caracteres, evitando erros de mais números aparecer na conversão
-        if (conversionString.length === 14) { //Somente se a string for 14 caracteres que a conversão vai ser feita
-            conversionString = conversionString.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
-        }
-        else if(conversionString.length >= 14){
-            conversionString = conversionString.replace(/\s+/g, "")
-            conversionString = conversionString.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
-        }
-    }
-    if (cpfCheckbox.checked) {
-        conversionString = conversionString.replace(/\s+/g, "")
-        if (conversionString.length === 13) { //Somente se a string for 11 caracteres que a conversão vai ser feita
-            conversionString = conversionString.substring(0, 13);//Limita a string para somente 11 caracteres, evitando erros de mais números aparecer na conversão
-            conversionString = conversionString.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "$1.$2.$3/$4-$5");
-        }
-    }
-
-      if (!textInput.innerText.trim()) {
-        convertErrorTooltip();
-      } else {
-        textOutputContainer.style.display="block";
-        textOutput.style.opacity = 1;
-        textOutput.innerText = conversionString;
-        if (!copyBtn) { //Validação para não criar mais de 1 botão de copiar
-          createCopy();
-        } else {
-          copyBtn.style.display = "inline-block";
-          copyIcon.style.display = "inline-block";
+        if (conversionString.length === 14) {
+          //Somente se a string for 14 caracteres que a conversão vai ser feita
+          conversionString = conversionString.replace(
+            /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,
+            "$1.$2.$3/$4-$5"
+          );
+        } else if (conversionString.length >= 14) {
+          conversionString = conversionString.replace(/\s+/g, "");
+          conversionString = conversionString.replace(
+            /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,
+            "$1.$2.$3/$4-$5"
+          );
         }
       }
-    }
+      if (cpfCheckbox.checked) {
+        conversionString = conversionString.replace(/\s+/g, "");
+        if (conversionString.length === 13) {
+          //Somente se a string for 11 caracteres que a conversão vai ser feita
+          conversionString = conversionString.substring(0, 13); //Limita a string para somente 11 caracteres, evitando erros de mais números aparecer na conversão
+          conversionString = conversionString.replace(
+            /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g,
+            "$1.$2.$3/$4-$5"
+          );
+        }
+      }
+      if (!uppercaseCheckbox.checked && !lowercaseCheckbox.checked && !symbolCheckbox.checked && !spaceCheckbox.checked && !lineBreakCheckbox.checked && !cnpjCheckbox.checked && !cpfCheckbox.checked) {
+        createTooltip("error", "Selecione pelo menos 1 tipo de conversão!");
+        textOutput.innerText = '';
+        textOutput.style.display = 'none';
+        return;
+      }
+      else{
+        textOutputContainer.style.display = "block";
+        textOutput.innerText = conversionString;
+        textOutput.style.display = "block";
+      }
+    
   }
+
+  textInput.addEventListener("input", convertText);
 
   symbolCheckbox.addEventListener("change", () => {
     let accentLabel = document.getElementById("accentLabel"); //Cria a label para remover acentos
@@ -148,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (symbolCheckbox.checked) {
       if (!accentCheckbox) {
-
         accentLabel = document.createElement("label");
         accentLabel.id = "accentLabel";
         accentLabel.textContent = "Remover Acentos";
@@ -159,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         symbolBox.appendChild(accentLabel);
         accentLabel.appendChild(accentCheckbox);
-
       }
     } else {
       if (accentLabel) {
@@ -169,8 +175,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  spaceCheckbox.addEventListener("change", () => {  //Ao habilitar a opção de remover espaços, cria dinâmicamente essa input (eu passei muito tempo nisso)
-  
+  spaceCheckbox.addEventListener("change", () => {
+    //Ao habilitar a opção de remover espaços, cria dinâmicamente essa input (eu passei muito tempo nisso)
+
     let endSpaceLabel = document.getElementById("endSpaceLabel"); //Cria a label
     let endSpaceInput = document.getElementById("endSpaceInput"); //Cria Input para o checkbox
 
@@ -184,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (spaceCheckbox.checked) {
       if (!endSpaceInput) {
-
         endSpaceLabel = document.createElement("label");
         endSpaceLabel.id = "endSpaceLabel";
         endSpaceLabel.textContent = "Somente final";
@@ -195,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         spaceBox.appendChild(endSpaceLabel);
         endSpaceLabel.appendChild(endSpaceInput);
-
       }
     } else {
       if (endSpaceLabel) {
@@ -205,122 +210,64 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  textInput.addEventListener('input', () => { //Event listener para contar caracteres - Sugestão Eduardo
+  textInput.addEventListener("input", () => {
+    //Event listener para contar caracteres - Sugestão Eduardo
     const textLength = textInput.textContent.length;
     charCounter.style.display = "inline";
     charCounter.textContent = `${textLength}`;
-    if(!textInput.innerText.trim()){charCounter.style.display = "none"};
-  })
-
-  function convertErrorTooltip() { //Criar mensagem de erro caso o usuário tente converter sem nada na caixa de texto (WIP)
-
-    let convertError = document.getElementById("convertError");
-
-    if(!convertError){ //Validação para não criar várias tooltips
-
-        convertError = document.createElement('span');
-        convertError.id = 'convertError';
-        convertError.textContent = "Favor digitar algo";
-        convertError.classList = 'slideIn';
-        notificationDiv.appendChild(convertError);
-        
-        setTimeout(() => { //Primeiro timeout para questão de frontend, ele roda a animação antes do child ser removido do body
-            convertError.classList.remove('slideIn')
-            convertError.classList = 'slideOut';
-        }, 4000);
-
-        setTimeout(() => { //Segundo timeout para excluir completamente a child
-            notificationDiv.removeChild(convertError);
-        }, 4700);
+    if (!textInput.innerText.trim()) {
+      charCounter.style.display = "none";
     }
-  }
+  });
 
-  function createCopiedTootip() {
-    let copyMsg = document.getElementById("copyMsg");
+  function createTooltip(type, text) {
+    //Função para criar uma tooltip
 
-    if(!copyMsg){
-        copyMsg = document.createElement('span');
-        copyMsg.id = "copyMsg";
-        copyMsg.textContent = 'Texto copiado com sucesso!'
-        copyMsg.classList = 'slideIn';
-        notificationDiv.appendChild(copyMsg);
+    var tooltip = document.getElementById("tooltip");
 
-        setTimeout(() => {
-            copyMsg.classList.remove('slideIn');
-            copyMsg.classList = 'slideOut';
-        }, 4000);
+    if (!tooltip) {
 
-        setTimeout(() => {
-            notificationDiv.removeChild(copyMsg);
-        }, 4700);
-    }
-  }
+      tooltip = document.createElement("div");
+      tooltip.id = "tooltip";
 
-  function noConversionTooltip(){ //Função para criar uma tooltip caso não tiver nenhuma conversão selecionada
-    noConversion = document.getElementById("noConversion");
+      notificationDiv.appendChild(tooltip);
+      tooltip.innerText = text;
+      tooltip.classList.add(type);
+      tooltip.classList.add("slideIn");
 
-    if(!noConversion){
-        noConversion = document.createElement('span');
-        noConversion.id = 'noConversion';
-        noConversion.textContent = "Favor selecionar pelo menos um tipo de conversão";
-        noConversion.classList = 'slideIn';
+      setTimeout(() => {
+        tooltip.classList.remove("slideIn");
+        tooltip.classList.add("slideOut");
+      }, 4000);
 
-        notificationDiv.appendChild(noConversion);
-
-        setTimeout(() => {
-            noConversion.classList.remove('slideIn');
-            noConversion.classList = 'slideOut';
-        }, 4000);
-
-        setTimeout(() => {
-          notificationDiv.removeChild(noConversion);
-        }, 4700);
+      setTimeout(() => {
+        notificationDiv.removeChild(tooltip);
+      }, 4700);
     }
   }
 
   function clearFields() {
     textInput.innerText = "";
     textOutput.innerText = "";
-    textOutput.style.opacity = 0;
+    textOutput.style.display = "none";
     charCounter.textContent = "";
     charCounter.style.display = "none";
-    if (copyBtn) //Caso usuário não tiver convertido nenhum texto
-      copyBtn.style.display = "none";
-      copyIcon.style.display = "none";
-  }
-
-  function createCopy() {
-    // Cria um botão de copiar texto dinâmicamente (viadagem eu sei mas queria mexer com elementos DOM)
-
-    copyBtn = document.createElement("button");
-    copyIcon = document.createElement("i");
-    copyLabel = document.createElement("label")
-
-    copyIcon.className = "bi bi-copy"; //Cria junto um ícone
-    copyIcon.style.margin = "5px";
-    copyIcon.style.fontSize = "0.8em";
-
-    copyBtn.className = "buttons";
-    copyBtn.id = "copyBtn";
-    copyBtn.className = "buttons"
-
-    copyLabel.textContent = "Copiar";
-
-    copyBtn.addEventListener("click", copyText);
-
-    copyBtnBox.appendChild(copyBtn);
-    copyBtn.appendChild(copyIcon);
-    copyBtn.appendChild(copyLabel);
   }
 
   function copyText() {
-    navigator.clipboard.writeText(textOutput.innerText);
-    createCopiedTootip();
+    if (textOutput.innerText === "") {
+      createTooltip("error", "Digite algo para converter!");
+    }
+    if (!uppercaseCheckbox.checked && !lowercaseCheckbox.checked && !symbolCheckbox.checked && !spaceCheckbox.checked && !lineBreakCheckbox.checked && !cnpjCheckbox.checked && !cpfCheckbox.checked) {
+      createTooltip("error", "Selecione pelo menos 1 tipo de conversão!");
+    }
+    else{
+      navigator.clipboard.writeText(textOutput.innerText);
+      createTooltip("success", "Texto copiado com sucesso!");
+    }
+    
   }
 
-  convertBtn.addEventListener("click", convertText);
   clearBtn.addEventListener("click", clearFields);
-
-
-
+  copyBtn.addEventListener("click", copyText);
 });
