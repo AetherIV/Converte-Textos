@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="100" height="50">
+  <!-- Uppercase A -->
+  <text x="10" y="35" font-family="Arial" font-size="35" fill="black">A</text>
+  
+  <!-- Arrow -->
+  <line x1="30" y1="25" x2="70" y2="25" stroke="black" stroke-width="3" />
+  <polygon points="70,20 70,30 80,25" fill="black" />
+  
+  <!-- Lowercase a -->
+  <text x="85" y="35" font-family="Arial" font-size="35" fill="black">a</text>
+</svg>
